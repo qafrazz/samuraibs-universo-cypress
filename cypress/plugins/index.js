@@ -21,13 +21,10 @@ const { Pool } = require('pg')
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
-  const pool = new Pool({
-    host: 'ziggy.db.elephantsql.com',
-    user: 'spowbegw',
-    password: 'Q0qjetH1-YRGNefXNFbz2ncpiopm8XBV',
-    database: 'spowbegw',
-    port: 5432
-  })
+  
+  
+  const configJason = require(config.configFile)
+  const pool = new Pool(configJason.dbConfig)
 
   on('task', {
     removeUser(email) {
