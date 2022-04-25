@@ -3,7 +3,7 @@ import signupPage from '../support/pages/signup'
 
 describe('cadastro', function () {
 
-  context('quando cadastrar um novo usuario', () => {
+  context('quando cadastrar um novo usuario', function () {
     const user = {
       name: 'Francisco', email: 'francisco@samuraibs.com', password: 'pwd123'
     }
@@ -14,7 +14,8 @@ describe('cadastro', function () {
       signupPage.go()
       signupPage.form(user)
       signupPage.submit()
-      signupPage.toast.shouldHaveText('Agora você se tornou um(a) Samurai, faça seu login para ver seus agendamentos!')
+      signupPage.toast
+        .HaveText('Agora você se tornou um(a) Samurai, faça seu login para ver seus agendamentos!')
     });
   })
 
@@ -32,7 +33,8 @@ describe('cadastro', function () {
       signupPage.go()
       signupPage.form(user)
       signupPage.submit()
-      signupPage.toast.shouldHaveText('Email já cadastrado para outro usuário.')
+      signupPage.toast
+        .HaveText('Email já cadastrado para outro usuário.')
     });
   })
 
@@ -44,7 +46,8 @@ describe('cadastro', function () {
       signupPage.go()
       signupPage.form(user)
       signupPage.submit()
-      signupPage.alertHaveText('Informe um email válido')
+      signupPage.alert
+        .HaveText('Informe um email válido')
     });
   })
 
@@ -64,7 +67,8 @@ describe('cadastro', function () {
       });
     })
     afterEach(function () {
-      signupPage.alertHaveText('Pelo menos 6 caracteres')
+      signupPage.alert
+        .HaveText('Pelo menos 6 caracteres')
     })
   })
 
@@ -80,7 +84,7 @@ describe('cadastro', function () {
     })
     alertMessages.forEach(function (alert) {
       it('deve exibir ' + alert.toLowerCase(), () => {
-        signupPage.alertHaveText(alert)
+        signupPage.alert.HaveText(alert)
       });
     })
   })

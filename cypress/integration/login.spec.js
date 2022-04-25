@@ -41,9 +41,53 @@ describe('login', function () {
       loginPage.form(user)
       loginPage.submit()
       const message = 'Ocorreu um erro ao fazer login, verifique suas credenciais.'
-      loginPage.toast.shouldHaveText(message)
+      loginPage.toast.HaveText(message)
 
     });
 
+  })
+
+  context('quando o formato do email é invalido', function () {
+    const emails = [
+      'papito.com.br',
+      'yahoo.com',
+      '@',
+      '@gmail.com',
+      '111111',
+      '@##$@$'
+    ]
+
+    before(function () {
+      loginPage.go()
+    })
+
+
+    emails.forEach(function (email) {
+      it('nao deve logar com o email: ' + email, () => {
+        const user = { email: email, password: 'pwd123' }
+
+        loginPage.form(user)
+        loginPage.submit()
+        loginPage.alert.HaveText('Informe um email válido')
+
+      });
+    })
+
+  })
+
+  context('quando nao preencho nenhum  dos campos', function () {
+    const alertMessages = [
+      'E-mail é obrigatório',
+      'Senha é obrigatória']
+
+    before(function () {
+      loginPage.go()
+      loginPage.submit()
+    })
+    alertMessages.forEach(function (alert) {
+      it('deve exibir ' + alert.toLowerCase(), () => {
+        loginPage.alert.HaveText(alert)
+      });
+    })
   })
 });
