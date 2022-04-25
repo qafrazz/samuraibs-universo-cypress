@@ -1,16 +1,16 @@
 
 import signupPage from '../support/pages/signup'
 
-describe('cadastro', () => {
+describe('cadastro', function () {
 
   context('quando cadastrar um novo usuario', () => {
     const user = {
       name: 'Francisco', email: 'francisco@samuraibs.com', password: 'pwd123'
     }
-    before(() => {
+    before(function () {
       signupPage.removeDataBase(user)
     })
-    it('deve cadastrar um novo usuario', () => {
+    it('deve cadastrar um novo usuario', function () {
       signupPage.go()
       signupPage.form(user)
       signupPage.submit()
@@ -18,18 +18,17 @@ describe('cadastro', () => {
     });
   })
 
-  context('quando o email já existe', () => {
+  context('quando o email já existe', function () {
     const user = {
       name: 'Carlos',
       email: 'carlos@samuraibs.com',
       password: 'pwd123',
       is_provider: true
     }
-    before(() => {
-      signupPage.removeDataBase(user)
-      signupPage.request(user)
+    before(function () {
+      cy.postUser(user)
     })
-    it('não deve cadastrar', () => {
+    it('não deve cadastrar', function () {
       signupPage.go()
       signupPage.form(user)
       signupPage.submit()
@@ -37,11 +36,11 @@ describe('cadastro', () => {
     });
   })
 
-  context('quando o email é incorreto', () => {
+  context('quando o email é incorreto', function () {
     const user = {
       name: 'Elizabeth Olsen', email: 'liza.samuraibs.com', password: 'pwd123'
     }
-    it('deve exibir mensagem de alerta', () => {
+    it('deve exibir mensagem de alerta', function () {
       signupPage.go()
       signupPage.form(user)
       signupPage.submit()
@@ -49,14 +48,14 @@ describe('cadastro', () => {
     });
   })
 
-  context('quando a senha tem menos de 6 caracteres', () => {
+  context('quando a senha tem menos de 6 caracteres', function () {
     const passwords = ['1', '2a', 'ab3', 'abc4', 'ab#c5']
 
-    beforeEach(() => {
+    beforeEach(function () {
       signupPage.go()
     })
     passwords.forEach(function (p) {
-      it('não deve cadastrar com a senha: ' + p, () => {
+      it('não deve cadastrar com a senha: ' + p, function () {
         const user = {
           name: 'Jason', email: 'jason@samuraibs.com', password: p
         }
@@ -68,8 +67,8 @@ describe('cadastro', () => {
       signupPage.alertHaveText('Pelo menos 6 caracteres')
     })
   })
- 
-  context('quando nao preenche nenhum  dos campos', () => {
+
+  context('quando nao preenche nenhum  dos campos', function () {
     const alertMessages = [
       'Nome é obrigatório',
       'E-mail é obrigatório',

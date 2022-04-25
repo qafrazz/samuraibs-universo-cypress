@@ -2,10 +2,10 @@
   "baseUrl": "http://localhost:3000",
   "viewportWidth": 1440,
   "viewportHeight": 900,
-  "dbConfig":{
+  "dbConfig": {
     "host": "ziggy.db.elephantsql.com",
     "user": "spowbegw",
-    "password":"Q0qjetH1-YRGNefXNFbz2ncpiopm8XBV",
+    "password": "Q0qjetH1-YRGNefXNFbz2ncpiopm8XBV",
     "database": "spowbegw",
     "port": 5432
   }

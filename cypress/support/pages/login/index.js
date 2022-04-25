@@ -1,6 +1,10 @@
-import {el} from './elements'
-
+import { el } from './elements'
+import toast from '../../components/toast'
 class LoginPage {
+
+  constructor() {
+    this.toast = toast
+  }
   go() {
     cy.visit('/');
   }
@@ -9,7 +13,7 @@ class LoginPage {
     cy.get(el.password).type(user.password);
   }
   submit() {
-    cy.contains(el.loginButton).click();
+    cy.contains(el.singIn).click();
   }
 }
 export default new LoginPage()
