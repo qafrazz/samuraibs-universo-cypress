@@ -25,11 +25,11 @@ describe('Recuperar a senha', function () {
   })
 
   context('quando o usuario solicita o resgate', function () {
-
     before(function () {
       cy.postUser(this.recovery)
       cy.recoveryPass(this.recovery.email)
     });
+    
     it('deve poder cadastrar uma nova senha', function () {
       const token = Cypress.env('recoveryToken')
 
