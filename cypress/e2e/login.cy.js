@@ -1,3 +1,4 @@
+/// <reference types="cypress" />
 import loginPage from '../support/pages/login'
 import dashPage from '../support/pages/dash'
 

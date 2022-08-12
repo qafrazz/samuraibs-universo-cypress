@@ -7,7 +7,7 @@
   "license": "MIT",
   "devDependencies": {
     "@faker-js/faker": "^6.0.0",
-    "cypress": "9.7.0",
+    "cypress": "10.4.0",
     "moment": "^2.29.3",
     "pg": "^8.7.3",
     "underscore": "^1.13.3"
